@@ -13,7 +13,7 @@ public class PhraseServer {
             while(true) {
                 Socket sock = serverSocket.accept();
 
-                printWriter writer = new PrintWriter(sock.getOutputStream());
+                PrintWriter writer = new PrintWriter(sock.getOutputStream());
                 String phrase = getPhrase();
                 writer.println(phrase);
                 writer.close();
@@ -22,6 +22,11 @@ public class PhraseServer {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private String getPhrase() {
+        int random = (int) (Math.random() * phraseList.length);
+        return phraseList[random];
     }
 
     public static void main(String[] args) {
